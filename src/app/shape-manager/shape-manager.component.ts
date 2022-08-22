@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit} from '@angular/core';
 import {Shape} from "../interfaces/shape";
 import {StorageService} from "../services/storage-service.service";
 import {environment} from "../../environments/environment";
+import { ShapeType } from '../enums/shape-type.enum';
 
 @Component({
   selector: 'app-shape-manager',
@@ -12,9 +13,11 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   shapeListKey: string;
   shapeList: Shape[];
-
   height: number;
   width: number;
+
+  keys = Object.keys;
+  ShapeTypeEnum = ShapeType;
 
   constructor(private storageService: StorageService, private canvas: ElementRef) {
     this.shapeListKey = environment.shapelist_key;
@@ -32,8 +35,16 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   }
 
-  addShape(x: string, y: string): void {
-    this.shapeList.push({x: parseInt(x), y: parseInt(y), rot: 0});
+  addShape(type: string, x: string, y: string): void {
+    this.shapeList.push({
+      type: (<any>this.ShapeTypeEnum)[type],
+      x: parseInt(x), 
+      y: parseInt(y), 
+      rotation: 0});
+    this.saveList();
   }
 
+  saveList(): void {
+    this.storageService.setData(this.shapeListKey, this.shapeList);
+  }
 }

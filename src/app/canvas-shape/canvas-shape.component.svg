@@ -1,5 +1,12 @@
-<svg:rect xmlns:svg="http://www.w3.org/2000/svg"
+<svg:rect *ngIf="shape.type == ShapeTypeEnum.Rectangle"
+          xmlns:svg="http://www.w3.org/2000/svg"
           [attr.x]="shape.x"
           [attr.y]="shape.y"
           width="100"
           height="100"/>
+<svg:ellipse *ngIf="shape.type == ShapeTypeEnum.Ellipse"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          [attr.cx]="shape.x"
+          [attr.cy]="shape.y"
+          rx="100"
+          ry="100"/>

@@ -4,7 +4,15 @@
   <g canvas-shape *ngFor="let shape of shapeList" [shape]="shape"></g>
 </svg>
 <div>
-  <label>x: </label><input #x type="number"><br>
-  <label>y: </label><input #y type="number"><br>
-  <button (click)="addShape(x.value, y.value)">add shape</button>
+  <label>type: </label>
+  <select #type>
+    <option *ngFor="let type of keys(ShapeTypeEnum)" [value]="type">
+      {{ type }}
+    </option>
+  </select><br>
+  <label>x: </label>
+  <input #x type="number"><br>
+  <label>y: </label>
+  <input #y type="number"><br>
+  <button (click)="addShape(type.value, x.value, y.value)">add shape</button>
 </div>
