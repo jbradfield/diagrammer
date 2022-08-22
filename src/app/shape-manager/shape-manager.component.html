@@ -1,0 +1,10 @@
+<svg class="canvas"
+     #canvas
+>
+  <g canvas-shape *ngFor="let shape of shapeList" [shape]="shape"></g>
+</svg>
+<div>
+  <label>x: </label><input #x type="number"><br>
+  <label>y: </label><input #y type="number"><br>
+  <button (click)="addShape(x.value, y.value)">add shape</button>
+</div>

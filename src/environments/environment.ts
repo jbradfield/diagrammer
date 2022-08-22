@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  current_effort: "draw shapes on canvas",
+  shapelist_key: "shapeList",
 };
 
 /*
