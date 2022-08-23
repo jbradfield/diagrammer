@@ -1,8 +1,5 @@
-import { ShapeType } from "../enums/shape-type.enum";
-
 export interface Shape {
 
-  type: ShapeType,
   // x/y coordinates of the geometric center of the object
   x: number;
   y: number;

@@ -1,7 +1,6 @@
 <svg class="canvas"
      #canvas
 >
-  <g canvas-shape *ngFor="let shape of shapeList" [shape]="shape"></g>
 </svg>
 <div>
   <label>type: </label>
@@ -10,9 +9,10 @@
       {{ type }}
     </option>
   </select><br>
-  <label>x: </label>
-  <input #x type="number"><br>
-  <label>y: </label>
-  <input #y type="number"><br>
-  <button (click)="addShape(type.value, x.value, y.value)">add shape</button>
+  <label>x: </label><input #x type="number"><br>
+  <label>y: </label><input #y type="number"><br>
+  <label>h: </label><input #h type="number"><br>
+  <label>w: </label><input #w type="number"><br>
+  <button (click)="addShape(type.value, x.value, y.value, h.value, w.value)">add shape</button><br>
+  <button (click)="clear()">clear</button>
 </div>
