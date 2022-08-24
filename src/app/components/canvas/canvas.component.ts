@@ -6,7 +6,7 @@ import { ShapeComponent } from '../shape/shape.component';
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.css']
+  styleUrls: ['./canvas.component.scss']
 })
 export class CanvasComponent implements OnInit {
 

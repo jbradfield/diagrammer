@@ -4,7 +4,7 @@ import { Shape } from '../../model/shape';
 @Component({
   selector: 'app-shape',
   templateUrl: './shape.component.html',
-  styleUrls: ['./shape.component.css']
+  styleUrls: ['./shape.component.scss']
 })
 export class ShapeComponent implements OnInit {
 
