@@ -3,17 +3,14 @@ import { CanvasComponent } from '../../interfaces/canvas-component';
 import { RectangleShape } from './rectangle-shape';
 
 @Component({
-  selector: 'app-rectangle',
+  selector: 'svg:g[app-rectangle]',
   templateUrl: './rectangle.component.html',
-  styleUrls: ['./rectangle.component.css']
+  styleUrls: ['./rectangle.component.css'],
 })
 export class RectangleComponent implements OnInit, CanvasComponent {
+  @Input() shapeData!: RectangleShape;
 
-  @Input() shapeData! : RectangleShape;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

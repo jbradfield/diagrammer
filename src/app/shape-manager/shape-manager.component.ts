@@ -2,11 +2,11 @@ import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild} from
 import {StorageService} from "../services/storage-service.service";
 import {environment} from "../../environments/environment";
 import { ShapeType } from '../enums/shape-type.enum';
-import { CanvasDirective } from '../directives/canvas.directive';
 import { CanvasElement } from '../classes/canvas-element';
 import { CanvasComponent } from '../interfaces/canvas-component';
 import { RectangleComponent } from '../canvas-components/rectangle/rectangle.component';
 import { EllipseComponent } from '../canvas-components/ellipse/ellipse.component';
+import { CanvasAnchorDirective } from '../directives/canvas-anchor.directive';
 
 @Component({
   selector: 'app-shape-manager',
@@ -15,21 +15,19 @@ import { EllipseComponent } from '../canvas-components/ellipse/ellipse.component
 })
 export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(CanvasDirective) canvas!: CanvasDirective;
+  @ViewChild(CanvasAnchorDirective) canvas!: CanvasAnchorDirective;
   
   shapeListKey: string;
   shapeList: CanvasElement[];
-  // height: number;
-  // width: number;
 
   keys = Object.keys;
   ShapeTypeEnum = ShapeType;
 
+  json = JSON;
+
   constructor(private storageService: StorageService) {
     this.shapeListKey = environment.shapelist_key;
     this.shapeList = storageService.getData(this.shapeListKey) || [];
-    // this.height = 0;
-    // this.width = 0;
   }
 
   ngOnInit(): void {

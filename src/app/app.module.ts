@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShapeManagerComponent } from './shape-manager/shape-manager.component';
-import { CanvasDirective } from './directives/canvas.directive';
 import { RectangleComponent } from './canvas-components/rectangle/rectangle.component';
 import { EllipseComponent } from './canvas-components/ellipse/ellipse.component';
+import { CanvasAnchorDirective } from './directives/canvas-anchor.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { EllipseComponent } from './canvas-components/ellipse/ellipse.component'
     ShapeManagerComponent,
     RectangleComponent,
     EllipseComponent,
-    CanvasDirective
+    CanvasAnchorDirective,
   ],
   imports: [
     BrowserModule,
