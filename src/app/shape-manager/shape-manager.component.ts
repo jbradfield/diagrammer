@@ -44,17 +44,13 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
     const canvasViewContainer = this.canvas.viewContainerRef;
     canvasViewContainer.clear();
 
-    console.log(canvasViewContainer);
-
     this.shapeList.forEach((element) => {
-      console.log(element);
       const comp = canvasViewContainer.createComponent<CanvasComponent>(element.type);
       comp.instance.shapeData = element.data;
     })
   }
 
   addShape(type: string, x: string, y: string, h: string, w: string): void {
-    console.log(type);
     let element : CanvasElement;
     if (type == "Rectangle") {
       element = {
