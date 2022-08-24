@@ -5,16 +5,13 @@ import { Shape } from '../model/shape';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
-export class ShapeService implements OnInit {
+export class ShapeService {
 
   shapes: ShapeComponent[];
   shapeListKey: string;
   
   constructor(private storage: LocalStorageService) { 
     this.shapeListKey = environment.shapelist_key;
-  }
-
-  ngOnInit(): void {
     let shapeData: Shape[] = this.storage.getData(this.shapeListKey);
     this.shapes = shapeData.map(s => {
       let comp = new ShapeComponent(); // TODO: need to get proper component by type value
@@ -30,6 +27,7 @@ export class ShapeService implements OnInit {
   addShape(shape: ShapeComponent): void {
     this.shapes.push(shape);
     this.save();
+    console.log(this.shapes);
   }
 
   removeShape(shape: ShapeComponent): void {
