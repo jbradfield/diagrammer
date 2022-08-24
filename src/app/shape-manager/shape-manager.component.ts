@@ -1,10 +1,8 @@
 import {AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild} from '@angular/core';
-import {Shape} from "../interfaces/shape";
 import {StorageService} from "../services/storage-service.service";
 import {environment} from "../../environments/environment";
 import { ShapeType } from '../enums/shape-type.enum';
 import { CanvasDirective } from '../directives/canvas.directive';
-import { CanvasShapeComponent } from '../canvas-shape/canvas-shape.component';
 import { CanvasElement } from '../classes/canvas-element';
 import { CanvasComponent } from '../interfaces/canvas-component';
 import { RectangleComponent } from '../canvas-components/rectangle/rectangle.component';
