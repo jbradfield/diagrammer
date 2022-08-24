@@ -17,7 +17,7 @@ export class DynamicSvgDirective implements OnInit, OnDestroy {
   constructor(private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit(): void {
-    this.viewContainerRef.createEmbeddedView(component.template)
+    this.viewContainerRef.createEmbeddedView(this.component.template)
   }
 
   ngOnDestroy(): void {

@@ -6,14 +6,13 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { StorageService } from '../services/storage-service.service';
 import { environment } from '../../environments/environment';
 import { ShapeType } from '../enums/shape-type.enum';
 import { CanvasElement } from '../classes/canvas-element';
-import { CanvasComponent } from '../interfaces/canvas-component';
 import { RectangleComponent } from '../canvas-components/rectangle/rectangle.component';
 import { EllipseComponent } from '../canvas-components/ellipse/ellipse.component';
 import { CanvasAnchorDirective } from '../directives/canvas-anchor.directive';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-shape-manager',
@@ -31,7 +30,7 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   json = JSON;
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: LocalStorageService) {
     this.shapeListKey = environment.shapelist_key;
     this.shapeList = storageService.getData(this.shapeListKey) || [];
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Shape } from 'src/app/model/shape';
+import { Shape } from '../../model/shape';
 
 @Component({
   selector: 'app-shape',

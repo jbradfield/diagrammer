@@ -3,24 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShapeManagerComponent } from './shape-manager/shape-manager.component';
-import { RectangleComponent } from './canvas-components/rectangle/rectangle.component';
-import { EllipseComponent } from './canvas-components/ellipse/ellipse.component';
 import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
+import { CanvasComponent } from './components/canvas/canvas.component';
+import { ShapeComponent } from './components/shape/shape.component';
+import { ShapeService } from './services/shape.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShapeManagerComponent,
-    RectangleComponent,
-    EllipseComponent,
+    CanvasComponent,
+    ShapeComponent,
     DynamicSvgDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ShapeService,
+    LocalStorageService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

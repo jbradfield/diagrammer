@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 import { ShapeComponent } from '../components/shape/shape.component';
 import { Shape } from '../model/shape';
 import { LocalStorageService } from './local-storage.service';
@@ -23,9 +23,28 @@ export class ShapeService implements OnInit {
     });
   }
 
-  save() {
+  getShapes(): ShapeComponent[] {
+    return this.shapes;
+  }
+
+  addShape(shape: ShapeComponent): void {
+    this.shapes.push(shape);
+    this.save();
+  }
+
+  removeShape(shape: ShapeComponent): void {
+    const index = this.shapes.indexOf(shape);
+    this.shapes.splice(index, 1);
+    this.save();
+  }
+
+  removeAll(): void {
+    this.shapes = [];
+    this.save();
+  }
+
+  private save() {
     let shapeData: Shape[] = this.shapes.map(s => s.shapeData);
     this.storage.setData(this.shapeListKey, shapeData);
   }
-
 }
