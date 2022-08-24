@@ -38,21 +38,7 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
-    this.draw();
-  }
-
-  draw() {
-    const canvasViewContainer = this.canvas.viewContainerRef;
-    canvasViewContainer.clear();
-
-    this.shapeList.forEach((element) => {
-      const comp = canvasViewContainer.createComponent<CanvasComponent>(
-        element.type
-      );
-      comp.instance.shapeData = element.data;
-    });
-  }
+  ngAfterViewInit(): void { }
 
   addShape(type: string, x: string, y: string, h: string, w: string): void {
     let element: CanvasElement;
@@ -80,7 +66,6 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
       this.shapeList.push(element);
     }
     this.saveList();
-    this.draw();
   }
 
   saveList(): void {
@@ -89,7 +74,6 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   clear(): void {
     this.shapeList = [];
-    this.draw();
     this.saveList();
   }
 }

@@ -1,5 +1,7 @@
 <svg class="canvas">
-  <ng-container appCanvasAnchor></ng-container>
+  <ng-container *ngFor="let shape of shapeList">
+    <ng-template dynamic-svg ></ng-template>
+  </ng-container>
 </svg>
 <div>
   <label>type: </label>

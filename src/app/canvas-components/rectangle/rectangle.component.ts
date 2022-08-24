@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CanvasComponent } from '../../interfaces/canvas-component';
 import { RectangleShape } from './rectangle-shape';
 
@@ -8,7 +8,9 @@ import { RectangleShape } from './rectangle-shape';
   styleUrls: ['./rectangle.component.css'],
 })
 export class RectangleComponent implements OnInit, CanvasComponent {
+  
   @Input() shapeData!: RectangleShape;
+  @ViewChild('template') template: TemplateRef<any>;
 
   constructor() {}
 
