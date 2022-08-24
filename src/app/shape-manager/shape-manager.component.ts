@@ -17,7 +17,7 @@ import { EllipseComponent } from '../canvas-components/ellipse/ellipse.component
 })
 export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
-  @ViewChild("canvas") canvas!: CanvasDirective;
+  @ViewChild(CanvasDirective) canvas!: CanvasDirective;
   
   shapeListKey: string;
   shapeList: CanvasElement[];
