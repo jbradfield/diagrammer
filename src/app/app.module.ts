@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ShapeManagerComponent } from './shape-manager/shape-manager.component';
 import { RectangleComponent } from './canvas-components/rectangle/rectangle.component';
 import { EllipseComponent } from './canvas-components/ellipse/ellipse.component';
-import { CanvasAnchorDirective } from './directives/canvas-anchor.directive';
 import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { DynamicSvgDirective } from './directives/dynamic-svg.directive';
     ShapeManagerComponent,
     RectangleComponent,
     EllipseComponent,
-    CanvasAnchorDirective,
     DynamicSvgDirective,
   ],
   imports: [

@@ -38,7 +38,7 @@ export class ShapeManagerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(): void { }
+  ngAfterViewInit(): void {}
 
   addShape(type: string, x: string, y: string, h: string, w: string): void {
     let element: CanvasElement;
