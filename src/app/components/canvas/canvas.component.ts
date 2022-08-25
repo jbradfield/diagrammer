@@ -1,33 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Shape } from '../../model/shape';
 import { ShapeType } from '../../model/shape-type.enum';
 import { ShapeService } from '../../services/shape.service';
-import { ShapeComponent } from '../shape/shape.component';
 
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss']
+  styleUrls: ['./canvas.component.scss'],
 })
-export class CanvasComponent implements OnInit {
+export class CanvasComponent implements OnInit, AfterViewInit {
+  constructor(
+    private shapeService: ShapeService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  constructor(private shapeService: ShapeService) { }
+  ngOnInit() {
+    console.log(this.getShapes());
+  }
 
-  ngOnInit() { }
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 
-  getShapes(): ShapeComponent[] {
+  getShapes(): Shape[] {
     return this.shapeService.getShapes();
   }
 
   addShape(x: string, y: string): void {
-    // TODO: replace with service call to get correct component
-    let comp = new ShapeComponent();
-    comp.shapeData = {
-      id: "PH",
+    let shape = {
+      id: 'PH',
       type: ShapeType.Rectangle,
       center: { x: parseFloat(x), y: parseFloat(y) }, // there has to be a way to take numbers from the form input?
-      rotation: 0
+      rotation: 0,
     };
-    this.shapeService.addShape(comp);
+    this.shapeService.addShape(shape);
+    this.cdr.detectChanges();
   }
 
   clear(): void {

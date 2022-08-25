@@ -7,30 +7,25 @@ import {LocalStorageService} from './local-storage.service';
 @Injectable()
 export class ShapeService {
 
-  shapes: ShapeComponent[];
+  shapes: Shape[];
   shapeListKey: string;
 
   constructor(private storage: LocalStorageService) {
     this.shapeListKey = environment.shapelist_key;
-    let shapeData: Shape[] = this.storage.getData(this.shapeListKey);
-    this.shapes = (shapeData == null || undefined) ? [] : shapeData.map(s => {
-      let comp = new ShapeComponent(); // TODO: need to get proper component by type value
-      comp.shapeData = s;
-      return comp;
-    });
+    this.shapes = this.storage.getData(this.shapeListKey);
   }
 
-  getShapes(): ShapeComponent[] {
+  getShapes(): Shape[] {
     return this.shapes;
   }
 
-  addShape(shape: ShapeComponent): void {
+  addShape(shape: Shape): void {
     this.shapes.push(shape);
     this.save();
     console.log(this.shapes);
   }
 
-  removeShape(shape: ShapeComponent): void {
+  removeShape(shape: Shape): void {
     const index = this.shapes.indexOf(shape);
     this.shapes.splice(index, 1);
     this.save();
@@ -42,7 +37,6 @@ export class ShapeService {
   }
 
   private save() {
-    let shapeData: Shape[] = this.shapes.map(s => s.shapeData);
-    this.storage.setData(this.shapeListKey, shapeData);
+    this.storage.setData(this.shapeListKey, this.shapes);
   }
 }
