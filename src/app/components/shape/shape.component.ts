@@ -1,13 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { Shape } from '../../model/shape';
 
 @Component({
-  selector: 'g[app-shape]',
+  selector: 'app-shape',
   templateUrl: './shape.component.html',
   styleUrls: ['./shape.component.scss'],
 })
 export class ShapeComponent implements OnInit {
-  @Input() shapeData: Shape;
+  @Input() shape: Shape;
+  @ViewChild('shapeTemplate', { static: true }) shapeTemplate: TemplateRef<any>;
 
   constructor() {}
 

@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Directive,
   Input,
   OnDestroy,
@@ -15,7 +14,7 @@ const shapeTypeComponentMap: Map<ShapeType, ShapeComponent> = new Map(); // TODO
 @Directive({
   selector: '[dynamic-svg]',
 })
-export class DynamicSvgDirective implements OnInit, AfterViewInit, OnDestroy {
+export class DynamicSvgDirective implements OnInit, OnDestroy {
   @Input() shape: Shape;
 
   constructor(private vcr: ViewContainerRef) {}
@@ -23,11 +22,8 @@ export class DynamicSvgDirective implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.vcr.clear();
     const compRef = this.vcr.createComponent<ShapeComponent>(ShapeComponent); // TODO pull type from map
-    compRef.instance.shapeData = this.shape;
-  }
-
-  ngAfterViewInit(): void {
-    // this.viewContainerRef.createEmbeddedView(this.component.shapeTemplate);
+    compRef.instance.shape = this.shape;
+    this.vcr.createEmbeddedView(compRef.instance.shapeTemplate);
   }
 
   ngOnDestroy(): void {

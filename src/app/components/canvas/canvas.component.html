@@ -1,6 +1,7 @@
 <svg class="canvas">
   <ng-container *ngFor="let shape of getShapes()">
     <ng-container dynamic-svg [shape]="shape"></ng-container>
+    <!-- <g app-shape [shape]="shape"></g> -->
   </ng-container>
 </svg>
 <div>

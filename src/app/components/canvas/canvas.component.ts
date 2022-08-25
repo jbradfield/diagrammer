@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Shape } from '../../model/shape';
 import { ShapeType } from '../../model/shape-type.enum';
 import { ShapeService } from '../../services/shape.service';
@@ -14,18 +9,11 @@ import { ShapeService } from '../../services/shape.service';
   styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
-  constructor(
-    private shapeService: ShapeService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  constructor(private shapeService: ShapeService) {}
 
-  ngOnInit() {
-    console.log(this.getShapes());
-  }
+  ngOnInit() {}
 
-  ngAfterViewInit() {
-    this.cdr.detectChanges();
-  }
+  ngAfterViewInit() {}
 
   getShapes(): Shape[] {
     return this.shapeService.getShapes();
@@ -39,7 +27,6 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       rotation: 0,
     };
     this.shapeService.addShape(shape);
-    this.cdr.detectChanges();
   }
 
   clear(): void {
