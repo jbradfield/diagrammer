@@ -1,19 +1,19 @@
-import { Injectable, OnInit } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { ShapeComponent } from '../components/shape/shape.component';
-import { Shape } from '../model/shape';
-import { LocalStorageService } from './local-storage.service';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {ShapeComponent} from '../components/shape/shape.component';
+import {Shape} from '../model/shape';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable()
 export class ShapeService {
 
   shapes: ShapeComponent[];
   shapeListKey: string;
-  
-  constructor(private storage: LocalStorageService) { 
+
+  constructor(private storage: LocalStorageService) {
     this.shapeListKey = environment.shapelist_key;
     let shapeData: Shape[] = this.storage.getData(this.shapeListKey);
-    this.shapes = shapeData.map(s => {
+    this.shapes = (shapeData == null || undefined) ? [] : shapeData.map(s => {
       let comp = new ShapeComponent(); // TODO: need to get proper component by type value
       comp.shapeData = s;
       return comp;

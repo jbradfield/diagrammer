@@ -1,5 +1,0 @@
-<svg:rect xmlns:svg="http://www.w3.org/2000/svg"
-          [attr.x]="shape.x"
-          [attr.y]="shape.y"
-          width="100"
-          height="100"/>
