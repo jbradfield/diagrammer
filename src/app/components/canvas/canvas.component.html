@@ -1,7 +1,7 @@
 <svg class="canvas">
   <ng-container *ngFor="let shape of getShapes()">
     <!-- <svg:rect [attr.x]="shape.shapeData.center.x" [attr.y]="shape.shapeData.center.y" height="20" width="20" fill="red"/> -->
-    <ng-template dynamic-svg [component]="shape"></ng-template>
+    <svg:g dynamic-svg [component]="shape"></svg:g>
   </ng-container>
 </svg>
 <div>
@@ -15,8 +15,6 @@
   <label>y: </label><input #y type="number" /><br />
   <!-- <label>h: </label><input #h type="number" /><br />
   <label>w: </label><input #w type="number" /><br /> -->
-  <button (click)="addShape(x.value, y.value)">
-    add shape</button
-  ><br />
+  <button (click)="addShape(x.value, y.value)">add shape</button><br />
   <button (click)="clear()">clear</button>
 </div>
