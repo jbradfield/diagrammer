@@ -8,6 +8,8 @@ import { CanvasComponent } from './components/canvas/canvas.component';
 import { ShapeComponent } from './components/shape/shape.component';
 import { ShapeService } from './services/shape.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { RectangleComponent } from './components/rectangle/rectangle.component';
+import { EllipseComponent } from './components/ellipse/ellipse.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { LocalStorageService } from './services/local-storage.service';
     CanvasComponent,
     ShapeComponent,
     DynamicSvgDirective,
+    RectangleComponent,
+    EllipseComponent,
   ],
   imports: [
     BrowserModule,
