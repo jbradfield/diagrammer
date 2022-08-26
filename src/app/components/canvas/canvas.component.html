@@ -5,12 +5,12 @@
   </ng-container>
 </svg>
 <div>
-  <!-- <label>type: </label>
+  <label>type: </label>
   <select #type>
-    <option *ngFor="let type of keys(ShapeTypeEnum)" [value]="type">
-      {{ type }}
-    </option></select
-  ><br /> -->
+    <option [value]="ShapeTypeEnum.Rectangle">Rectangle</option>
+    <option [value]="ShapeTypeEnum.Ellipse">Ellipse</option>
+  </select>
+  <br />
   <label>x: </label><input #x type="number" /><br />
   <label>y: </label><input #y type="number" /><br />
   <!-- <label>h: </label><input #h type="number" /><br />

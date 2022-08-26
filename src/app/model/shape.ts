@@ -1,4 +1,4 @@
-import { ShapeType } from "./shape-type.enum";
+import { ShapeType } from './shape-type.enum';
 
 export interface Vector2 {
   x: number;

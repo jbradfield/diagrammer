@@ -9,6 +9,9 @@ import { ShapeService } from '../../services/shape.service';
   styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
+
+  ShapeTypeEnum = ShapeType;
+
   constructor(private shapeService: ShapeService) {}
 
   ngOnInit() {}
