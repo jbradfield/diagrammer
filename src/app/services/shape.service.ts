@@ -22,7 +22,6 @@ export class ShapeService {
   addShape(shape: Shape): void {
     this.shapes.push(shape);
     this.save();
-    console.log(this.shapes);
   }
 
   removeShape(shape: Shape): void {

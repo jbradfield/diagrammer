@@ -1,9 +1,9 @@
 export enum ShapeType {
-  Point,
-  Line,
-  Rectangle,
-  Ellipse,
-  Triangle,
-  Polygon,
-  Donut
+  Point = 'Point',
+  Line = 'Line',
+  Rectangle = 'Rectangle',
+  Ellipse = 'Ellipse',
+  Triangle = 'Triangle',
+  Polygon = 'Polygon',
+  Donut = 'Donut',
 }

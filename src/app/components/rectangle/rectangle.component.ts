@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShapeComponent } from '../shape/shape.component';
 import { Rectangle } from '../../model/shape';
 
@@ -8,7 +8,7 @@ import { Rectangle } from '../../model/shape';
   styleUrls: ['./rectangle.component.scss'],
 })
 export class RectangleComponent extends ShapeComponent implements OnInit {
-  @Input() shape: Rectangle;
+  shape: Rectangle;
 
   constructor() {
     super();

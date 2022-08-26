@@ -13,8 +13,6 @@
   <br />
   <label>x: </label><input #x type="number" /><br />
   <label>y: </label><input #y type="number" /><br />
-  <!-- <label>h: </label><input #h type="number" /><br />
-  <label>w: </label><input #w type="number" /><br /> -->
-  <button (click)="addShape(x.value, y.value)">add shape</button><br />
+  <button (click)="addShape(type.value, x.value, y.value)">add shape</button><br />
   <button (click)="clear()">clear</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShapeComponent } from '../shape/shape.component';
 import { Ellipse } from '../../model/shape';
 
@@ -8,7 +8,7 @@ import { Ellipse } from '../../model/shape';
   styleUrls: ['./ellipse.component.scss'],
 })
 export class EllipseComponent extends ShapeComponent implements OnInit {
-  @Input() shape: Ellipse;
+  shape: Ellipse;
 
   constructor() {
     super();
