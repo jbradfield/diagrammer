@@ -5,14 +5,16 @@
   </ng-container>
 </svg>
 <div>
-  <label>type: </label>
-  <select #type>
-    <option [value]="ShapeTypeEnum.Rectangle">Rectangle</option>
-    <option [value]="ShapeTypeEnum.Ellipse">Ellipse</option>
+  <label>new shape type: </label>
+  <select
+    #toolSelect
+    [(ngModel)]="selectedTool"
+    (ngModelChange)="onChangeTool()"
+  >
+    <option [ngValue]="null">None</option>
+    <option [ngValue]="ShapeTypeEnum.Rectangle">Rectangle</option>
+    <option [ngValue]="ShapeTypeEnum.Ellipse">Ellipse</option>
   </select>
-  <br />
-  <label>x: </label><input #x type="number" /><br />
-  <label>y: </label><input #y type="number" /><br />
-  <button (click)="addShape(type.value, x.value, y.value)">add shape</button><br />
+  <div appToolHost></div>
   <button (click)="clear()">clear</button>
 </div>

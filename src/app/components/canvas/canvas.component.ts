@@ -1,7 +1,17 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  Type,
+  ViewChild,
+} from '@angular/core';
+import { ToolHostDirective } from '../../directives/tool-host.directive';
 import { Ellipse, Rectangle, Shape } from '../../model/shape';
 import { ShapeType } from '../../model/shape-type.enum';
 import { ShapeService } from '../../services/shape.service';
+import { EllipseToolComponent } from '../tools/ellipse-tool/ellipse-tool.component';
+import { RectangleToolComponent } from '../tools/rectangle-tool/rectangle-tool.component';
+import { ShapeToolComponent } from '../tools/shape-tool/shape-tool.component';
 
 @Component({
   selector: 'app-canvas',
@@ -9,6 +19,8 @@ import { ShapeService } from '../../services/shape.service';
   styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
+  @ViewChild(ToolHostDirective, { static: true }) toolHost!: ToolHostDirective;
+  selectedTool: ShapeType | null = null;
   ShapeTypeEnum = ShapeType;
 
   constructor(private shapeService: ShapeService) {}
@@ -17,25 +29,38 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
+  onChangeTool(): void {
+    let toolComponentType: Type<ShapeToolComponent> | null = null;
+    switch (this.selectedTool) {
+      case ShapeType.Rectangle:
+        toolComponentType = RectangleToolComponent;
+        break;
+      case ShapeType.Ellipse:
+        toolComponentType = EllipseToolComponent;
+        break;
+      default:
+        break;
+    }
+    this.toolHost.viewContainerRef.clear();
+    if (toolComponentType != null) {
+      const comp =
+        this.toolHost.viewContainerRef.createComponent<ShapeToolComponent>(
+          toolComponentType
+        );
+      const sub = comp.instance.submit.subscribe((shape) => {
+        this.addShape(shape);
+        this.selectedTool = null;
+        this.onChangeTool();
+      });
+      comp.onDestroy(() => sub.unsubscribe);
+    }
+  }
+
   getShapes(): Shape[] {
     return this.shapeService.getShapes();
   }
 
-  addShape(type: string, x: string, y: string): void {
-    let shape: Shape = {
-      id: 'PH',
-      type: ShapeType[type],
-      center: { x: parseFloat(x), y: parseFloat(y) }, // there has to be a way to take numbers from the form input?
-      rotation: 0,
-    };
-    // TODO: do this dynamically, somehow? iterate through the fields of the shape type?
-    if (type == ShapeType.Rectangle) {
-      (<Rectangle>shape).width = 100;
-      (<Rectangle>shape).height = 100;
-    } else if (type == ShapeType.Ellipse) {
-      (<Ellipse>shape).rx = 50;
-      (<Ellipse>shape).ry = 50;
-    }
+  addShape(shape: Shape): void {
     this.shapeService.addShape(shape);
   }
 

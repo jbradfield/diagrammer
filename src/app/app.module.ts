@@ -10,6 +10,10 @@ import { ShapeService } from './services/shape.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { RectangleComponent } from './components/rectangle/rectangle.component';
 import { EllipseComponent } from './components/ellipse/ellipse.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RectangleToolComponent } from './components/tools/rectangle-tool/rectangle-tool.component';
+import { EllipseToolComponent } from './components/tools/ellipse-tool/ellipse-tool.component';
+import { ToolHostDirective } from './directives/tool-host.directive';
 
 @NgModule({
   declarations: [
@@ -17,17 +21,14 @@ import { EllipseComponent } from './components/ellipse/ellipse.component';
     CanvasComponent,
     ShapeComponent,
     DynamicSvgDirective,
+    ToolHostDirective,
     RectangleComponent,
     EllipseComponent,
+    RectangleToolComponent,
+    EllipseToolComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    ShapeService,
-    LocalStorageService,
-  ],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  providers: [ShapeService, LocalStorageService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

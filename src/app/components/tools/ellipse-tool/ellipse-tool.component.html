@@ -1,0 +1,20 @@
+<form [formGroup]="shapeForm">
+  <div formGroupName="center">
+    <label for="elps-tool-center-x">cx:</label>
+    <input id="elps-tool-center-x" type="number" formControlName="x" /><br />
+    <label for="elps-tool-center-x">cy:</label>
+    <input id="elps-tool-center-x" type="number" formControlName="y" /><br />
+  </div>
+  <label for="elps-tool-width">rx:</label>
+  <input id="elps-tool-width" type="number" formControlName="rx" /><br />
+  <label for="elps-tool-height">ry:</label>
+  <input id="elps-tool-height" type="number" formControlName="ry" /><br />
+  <label for="elps-tool-rot">rot:</label>
+  <input id="elps-tool-rot" type="number" formControlName="rotation" /><br />
+  <button type="button" (click)="submitValue(shapeForm.value)">
+    add shape
+  </button>
+</form>
+<div>
+  <pre>{{ JSON.stringify(shapeForm.value, null, 2) }}</pre>
+</div>
