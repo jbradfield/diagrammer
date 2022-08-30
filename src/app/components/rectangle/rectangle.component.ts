@@ -10,8 +10,8 @@ import { Rectangle } from '../../model/shape';
 export class RectangleComponent extends ShapeComponent implements OnInit {
   shape: Rectangle;
 
-  constructor(cdr: ChangeDetectorRef) {
-    super(cdr);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {}

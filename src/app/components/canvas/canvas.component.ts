@@ -35,13 +35,13 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   constructor(private shapeService: ShapeService) {}
 
-  ngOnInit() {}
-
-  ngAfterViewInit() {
+  ngOnInit() {
     this.getShapes().forEach((s) => {
       this.createShapeComponent(s);
     });
   }
+
+  ngAfterViewInit() {}
 
   onChangeTool(): void {
     let toolComponentType: Type<ShapeToolComponent> | null = null;
@@ -74,7 +74,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     this.selectedComponents = [];
     this.selectedComponents.push(component);
     this.shapeComponents.forEach((c) => {
-      c.isSelected = this.selectedComponents.includes(c);
+      c.isSelected = this.selectedComponents.indexOf(c) > -1;
     });
   }
 
@@ -111,12 +111,13 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     );
     const component = compRef.instance;
     component.shape = shape;
-    component.isSelected = this.selectedComponents.includes(component);
+    component.isSelected = this.selectedComponents.indexOf(component) > -1;
     const sub = component.click.subscribe((event) => {
-      this.selectComponent(event);
       console.log('canvas click: ' + event.shape.type);
+      this.selectComponent(event);
     });
     compRef.onDestroy(() => sub.unsubscribe());
     vcr.createEmbeddedView(component.shapeTemplate);
+    this.shapeComponents.push(component);
   }
 }

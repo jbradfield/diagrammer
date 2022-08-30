@@ -10,8 +10,8 @@ import { Ellipse } from '../../model/shape';
 export class EllipseComponent extends ShapeComponent implements OnInit {
   shape: Ellipse;
 
-  constructor(cdr: ChangeDetectorRef) {
-    super(cdr);
+  constructor() {
+    super();
   }
 
   ngOnInit(): void {}

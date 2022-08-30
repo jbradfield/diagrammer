@@ -24,7 +24,7 @@ export class ShapeComponent implements OnInit, OnChanges {
 
   private _isSelected: boolean;
 
-  constructor(public cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   ngOnInit() {}
 
@@ -43,6 +43,6 @@ export class ShapeComponent implements OnInit, OnChanges {
 
   @Input() set isSelected(value: boolean) {
     this._isSelected = value;
-    this.cdr.markForCheck();
+    // this.cdr.markForCheck();
   }
 }
