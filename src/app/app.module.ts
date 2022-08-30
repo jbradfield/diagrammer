@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RectangleToolComponent } from './components/tools/rectangle-tool/rectangle-tool.component';
 import { EllipseToolComponent } from './components/tools/ellipse-tool/ellipse-tool.component';
 import { ToolHostDirective } from './directives/tool-host.directive';
+import { CanvasHostDirective } from './directives/canvas-host.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ToolHostDirective } from './directives/tool-host.directive';
     ShapeComponent,
     DynamicSvgDirective,
     ToolHostDirective,
+    CanvasHostDirective,
     RectangleComponent,
     EllipseComponent,
     RectangleToolComponent,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ShapeComponent } from '../shape/shape.component';
 import { Rectangle } from '../../model/shape';
 
@@ -10,8 +10,8 @@ import { Rectangle } from '../../model/shape';
 export class RectangleComponent extends ShapeComponent implements OnInit {
   shape: Rectangle;
 
-  constructor() {
-    super();
+  constructor(cdr: ChangeDetectorRef) {
+    super(cdr);
   }
 
   ngOnInit(): void {}

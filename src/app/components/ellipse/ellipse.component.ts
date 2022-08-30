@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ShapeComponent } from '../shape/shape.component';
 import { Ellipse } from '../../model/shape';
 
@@ -10,8 +10,8 @@ import { Ellipse } from '../../model/shape';
 export class EllipseComponent extends ShapeComponent implements OnInit {
   shape: Ellipse;
 
-  constructor() {
-    super();
+  constructor(cdr: ChangeDetectorRef) {
+    super(cdr);
   }
 
   ngOnInit(): void {}

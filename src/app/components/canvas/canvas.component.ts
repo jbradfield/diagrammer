@@ -5,10 +5,14 @@ import {
   Type,
   ViewChild,
 } from '@angular/core';
+import { CanvasHostDirective } from '../../directives/canvas-host.directive';
 import { ToolHostDirective } from '../../directives/tool-host.directive';
-import { Ellipse, Rectangle, Shape } from '../../model/shape';
+import { Shape } from '../../model/shape';
 import { ShapeType } from '../../model/shape-type.enum';
 import { ShapeService } from '../../services/shape.service';
+import { EllipseComponent } from '../ellipse/ellipse.component';
+import { RectangleComponent } from '../rectangle/rectangle.component';
+import { ShapeComponent } from '../shape/shape.component';
 import { EllipseToolComponent } from '../tools/ellipse-tool/ellipse-tool.component';
 import { RectangleToolComponent } from '../tools/rectangle-tool/rectangle-tool.component';
 import { ShapeToolComponent } from '../tools/shape-tool/shape-tool.component';
@@ -20,16 +24,24 @@ import { ShapeToolComponent } from '../tools/shape-tool/shape-tool.component';
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
   @ViewChild(ToolHostDirective, { static: true }) toolHost!: ToolHostDirective;
+  @ViewChild(CanvasHostDirective, { static: true })
+  canvasHost!: CanvasHostDirective;
+
   ShapeTypeEnum = ShapeType;
 
   selectedTool: ShapeType | null = null;
-  selectedShape: Shape | null = null;
+  selectedComponents: ShapeComponent[] = [];
+  shapeComponents: ShapeComponent[] = [];
 
   constructor(private shapeService: ShapeService) {}
 
   ngOnInit() {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.getShapes().forEach((s) => {
+      this.createShapeComponent(s);
+    });
+  }
 
   onChangeTool(): void {
     let toolComponentType: Type<ShapeToolComponent> | null = null;
@@ -58,8 +70,12 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     }
   }
 
-  selectShape(shape: Shape | null) {
-    this.selectedShape = shape;
+  selectComponent(component: ShapeComponent | null) {
+    this.selectedComponents = [];
+    this.selectedComponents.push(component);
+    this.shapeComponents.forEach((c) => {
+      c.isSelected = this.selectedComponents.includes(c);
+    });
   }
 
   getShapes(): Shape[] {
@@ -68,9 +84,39 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   addShape(shape: Shape): void {
     this.shapeService.addShape(shape);
+    this.createShapeComponent(shape);
   }
 
   clear(): void {
+    this.shapeComponents = [];
+    this.canvasHost.viewContainerRef.clear();
     this.shapeService.removeAll();
+  }
+
+  private getShapeComponentType(type: ShapeType): Type<ShapeComponent> {
+    switch (type) {
+      case ShapeType.Rectangle:
+        return RectangleComponent;
+      case ShapeType.Ellipse:
+        return EllipseComponent;
+      default:
+        return ShapeComponent;
+    }
+  }
+
+  private createShapeComponent(shape: Shape): void {
+    const vcr = this.canvasHost.viewContainerRef;
+    const compRef = vcr.createComponent<ShapeComponent>(
+      this.getShapeComponentType(shape.type)
+    );
+    const component = compRef.instance;
+    component.shape = shape;
+    component.isSelected = this.selectedComponents.includes(component);
+    const sub = component.click.subscribe((event) => {
+      this.selectComponent(event);
+      console.log('canvas click: ' + event.shape.type);
+    });
+    compRef.onDestroy(() => sub.unsubscribe());
+    vcr.createEmbeddedView(component.shapeTemplate);
   }
 }
