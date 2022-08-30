@@ -1,12 +1,11 @@
-import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
-import {ShapeComponent} from '../components/shape/shape.component';
-import {Shape} from '../model/shape';
-import {LocalStorageService} from './local-storage.service';
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { Shape } from '../model/shape';
+import { LocalStorageService } from './local-storage.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ShapeService {
-
   shapes: Shape[];
   shapeListKey: string;
 
@@ -20,6 +19,7 @@ export class ShapeService {
   }
 
   addShape(shape: Shape): void {
+    shape.id = uuidv4();
     this.shapes.push(shape);
     this.save();
   }

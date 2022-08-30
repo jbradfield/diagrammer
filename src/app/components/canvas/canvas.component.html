@@ -1,9 +1,20 @@
 <svg class="canvas">
   <ng-container *ngFor="let shape of getShapes()">
-    <ng-container dynamic-svg [shape]="shape"></ng-container>
-    <!-- <g app-shape [shape]="shape"></g> -->
+    <ng-container
+      dynamic-svg
+      [shape]="shape"
+      [isSelected]="shape == selectedShape"
+      (click)="selectShape($event)"
+    ></ng-container>
   </ng-container>
 </svg>
+
+<ul>
+  <li *ngFor="let shape of getShapes()">
+    {{ shape.type }}: {{ shape == selectedShape }}
+  </li>
+</ul>
+
 <div>
   <label>new shape type: </label>
   <select

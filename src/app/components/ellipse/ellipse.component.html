@@ -5,5 +5,7 @@
     [attr.cy]="shape.center.y"
     [attr.rx]="shape.rx"
     [attr.ry]="shape.ry"
+    [attr.stroke]="isSelected ? '4px solid blue' : 'none'"
+    (click)="onClick()"
   />
 </ng-template>

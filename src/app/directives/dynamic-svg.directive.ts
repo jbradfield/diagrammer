@@ -1,9 +1,12 @@
 import {
+  AfterViewInit,
   Directive,
+  EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
-  Type,
+  Output,
   ViewContainerRef,
 } from '@angular/core';
 import { EllipseComponent } from '../components/ellipse/ellipse.component';
@@ -23,21 +26,43 @@ const ShapeTypeLookup = {
 @Directive({
   selector: '[dynamic-svg]',
 })
-export class DynamicSvgDirective implements OnInit, OnDestroy {
+export class DynamicSvgDirective
+  implements AfterViewInit, OnDestroy, OnChanges
+{
   @Input() shape: Shape;
+  @Input() isSelected: boolean;
+  @Output() click: EventEmitter<Shape> = new EventEmitter<Shape>();
+
+  private component: ShapeComponent;
 
   constructor(private vcr: ViewContainerRef) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.vcr.clear();
     const compRef = this.vcr.createComponent<ShapeComponent>(
       ShapeTypeLookup[this.shape.type]
     );
-    compRef.instance.shape = this.shape;
-    this.vcr.createEmbeddedView(compRef.instance.shapeTemplate);
+    this.component = compRef.instance;
+    this.component.shape = this.shape;
+    this.component.isSelected = this.isSelected;
+    const sub = this.component.click.subscribe(() => this.onClick());
+    compRef.onDestroy(() => sub.unsubscribe());
+    this.vcr.createEmbeddedView(this.component.shapeTemplate);
+    console.log('dir init');
   }
 
   ngOnDestroy(): void {
     this.vcr.clear();
+  }
+
+  ngOnChanges(): void {
+    if (this.component) {
+      this.component.shape = this.shape;
+      this.component.isSelected = this.isSelected;
+    }
+  }
+
+  onClick(): void {
+    this.click.emit(this.shape);
   }
 }

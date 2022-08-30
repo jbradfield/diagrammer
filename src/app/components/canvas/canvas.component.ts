@@ -20,8 +20,10 @@ import { ShapeToolComponent } from '../tools/shape-tool/shape-tool.component';
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
   @ViewChild(ToolHostDirective, { static: true }) toolHost!: ToolHostDirective;
-  selectedTool: ShapeType | null = null;
   ShapeTypeEnum = ShapeType;
+
+  selectedTool: ShapeType | null = null;
+  selectedShape: Shape | null = null;
 
   constructor(private shapeService: ShapeService) {}
 
@@ -54,6 +56,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       });
       comp.onDestroy(() => sub.unsubscribe);
     }
+  }
+
+  selectShape(shape: Shape | null) {
+    this.selectedShape = shape;
   }
 
   getShapes(): Shape[] {
