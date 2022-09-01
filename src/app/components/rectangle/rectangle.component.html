@@ -5,7 +5,9 @@
     [attr.y]="shape.center.y - shape.height / 2"
     [attr.width]="shape.width"
     [attr.height]="shape.height"
-    [attr.stroke]="isSelected ? 'blue' : 'none'"
+    [attr.stroke]="isSelected ? 'skyblue' : shape.properties.stroke"
+    [attr.stroke-width]="shape.properties.strokeWidth"
+    [attr.fill]="shape.properties.fill"
     (click)="onClick()"
   />
 </ng-template>

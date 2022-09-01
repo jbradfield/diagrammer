@@ -21,6 +21,11 @@ export class EllipseToolComponent extends ShapeToolComponent implements OnInit {
     rotation: [0],
     rx: [0],
     ry: [0],
+    properties: this.fb.group({
+      fill: [""],
+      stroke: [""],
+      strokeWidth: [0],
+    })
   });
 
   JSON = JSON;
@@ -43,6 +48,11 @@ export class EllipseToolComponent extends ShapeToolComponent implements OnInit {
       rotation: value.rotation,
       rx: value.rx,
       ry: value.ry,
+      properties: {
+        fill: value.properties.fill,
+        stroke: value.properties.stroke,
+        strokeWidth: value.properties.strokeWidth,
+      }
     };
     this.submit.emit(ellipse);
   }

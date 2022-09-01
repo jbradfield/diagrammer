@@ -6,3 +6,12 @@ label {
 button {
   margin-top: 5px;
 }
+
+.tool {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.tool-col {
+  flex: 1;
+}

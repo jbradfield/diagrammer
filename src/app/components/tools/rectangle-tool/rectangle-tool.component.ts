@@ -21,6 +21,11 @@ export class RectangleToolComponent extends ShapeToolComponent implements OnInit
     rotation: [0],
     width: [0],
     height: [0],
+    properties: this.fb.group({
+      fill: [""],
+      stroke: [""],
+      strokeWidth: [0],
+    })
   });
 
   JSON = JSON;
@@ -43,6 +48,11 @@ export class RectangleToolComponent extends ShapeToolComponent implements OnInit
       rotation: value.rotation,
       width: value.width,
       height: value.height,
+      properties: {
+        fill: value.properties.fill,
+        stroke: value.properties.stroke,
+        strokeWidth: value.properties.strokeWidth,
+      }
     };
     this.submit.emit(rect);
   }
