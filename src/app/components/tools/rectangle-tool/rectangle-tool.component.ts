@@ -12,19 +12,20 @@ import { ShapeToolComponent } from '../shape-tool/shape-tool.component';
 export class RectangleToolComponent extends ShapeToolComponent implements OnInit {
   @Output() submit: EventEmitter<Rectangle> = new EventEmitter<Rectangle>();
 
+  //TODO: figure out how to do html placeholder values for this
   shapeForm = this.fb.group({
     type: ShapeType.Rectangle,
     center: this.fb.group({
-      x: [0],
-      y: [0],
+      x: [123],
+      y: [123],
     }),
     rotation: [0],
-    width: [0],
-    height: [0],
+    width: [80],
+    height: [40],
     properties: this.fb.group({
-      fill: [""],
-      stroke: [""],
-      strokeWidth: [0],
+      fill: ["orange"],
+      stroke: ["green"],
+      strokeWidth: [3],
     })
   });
 

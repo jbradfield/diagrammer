@@ -106,9 +106,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   private createShapeComponent(shape: Shape): void {
     const vcr = this.canvasHost.viewContainerRef;
-    const compRef = vcr.createComponent<ShapeComponent>(
-      this.getShapeComponentType(shape.type)
-    );
+    const compRef = vcr.createComponent<ShapeComponent>(ShapeComponent);
     const component = compRef.instance;
     component.shape = shape;
     component.isSelected = this.selectedComponents.indexOf(component) > -1;

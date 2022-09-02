@@ -8,7 +8,7 @@ import { Rectangle } from '../../model/shape';
   styleUrls: ['./rectangle.component.scss'],
 })
 export class RectangleComponent extends ShapeComponent implements OnInit {
-  shape: Rectangle;
+  // shape: Rectangle;
 
   constructor() {
     super();

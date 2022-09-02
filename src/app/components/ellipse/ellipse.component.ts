@@ -8,7 +8,7 @@ import { Ellipse } from '../../model/shape';
   styleUrls: ['./ellipse.component.scss'],
 })
 export class EllipseComponent extends ShapeComponent implements OnInit {
-  shape: Ellipse;
+  // shape: Ellipse;
 
   constructor() {
     super();

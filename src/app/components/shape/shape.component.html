@@ -1,1 +1,30 @@
-<ng-template #shapeTemplate></ng-template>
+<ng-template #shapeTemplate>
+  <svg:g>
+    <svg:g>
+      <svg:path *ngIf="isSelected" 
+                [attr.d]="path" 
+                [attr.stroke]="'#8ab4f899'" 
+                [attr.fill-opacity]="0"
+                [attr.stroke-width]="shape.properties.strokeWidth + 4">
+      </svg:path>
+    </svg:g>
+    <svg:g>
+      <svg:path [attr.d]="path" 
+                [attr.fill]="shape.properties.fill" 
+                [attr.stroke]="shape.properties.stroke" 
+                [attr.stroke-width]="shape.properties.strokeWidth"
+                (click)="onClick()">
+      </svg:path>
+    </svg:g>
+    <svg:g>
+      <svg:path [attr.d]="path" 
+                [attr.fill]="'#000'"
+                [attr.fill-opacity]="0"
+                [attr.stroke] = "'#000'"
+                [attr.stroke-opacity] = "0"
+                [attr.stroke-width] = "shape.properties.strokeWidth + 4"
+                (click)="onClick()">
+      </svg:path>
+    </svg:g>
+  </svg:g>
+</ng-template>
