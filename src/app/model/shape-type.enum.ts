@@ -2,7 +2,7 @@ export enum ShapeType {
   Line = 'Line',
   Rectangle = 'Rectangle',
   Ellipse = 'Ellipse',
-  Polygon = 'Polygon',
+  Poly = 'Poly',
   Donut = 'Donut',
   Image = 'Image',
 }
